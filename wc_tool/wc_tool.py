@@ -36,7 +36,7 @@ def validity_checkr(command_name, flag, file_name):
     try:
         command_name_checkr(command_name)
     except CommandNameError as cne:
-        print({cne})
+        print(f"Command Error: The '{command_name}' is not valid")
         return False
     
     try: 
@@ -62,7 +62,6 @@ def validity_checkr(command_name, flag, file_name):
         
 def wc_tool(flag, file_name):
     
-    file = open(file_name, "r")
     
     if flag == "-l":
         with open(file_name, "r") as file:
@@ -70,8 +69,8 @@ def wc_tool(flag, file_name):
             print(f"{len(lines)} {file_name}")
     
     elif flag == "-c":
-        with open(file_name, "rb") as file2:
-            byte_size = os.path.getsize(file_name)
+        with open(file_name, "rb") as file:
+            byte_size = len(file.read())
             print(f"{byte_size} {file_name}")
             
         return
@@ -79,14 +78,16 @@ def wc_tool(flag, file_name):
     elif flag == "-w":
         with open(file_name, "r") as file:
             content = file.read()
-            word_count = len(word_count.split())
+            word_count = len(content.split())
             print(f"{word_count} {file_name}")
+        return
     
-    elif flag == "m":
-        with open(file_name, "r" ) as file:
+    elif flag == "-m":
+        with open(file_name, "r"  ) as file:
             content = file.read()
             char_count = len(content)
             print(f"{char_count} {file_name}")
+        return
             
         
         
