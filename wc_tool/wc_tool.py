@@ -83,9 +83,8 @@ def wc_tool(flag, file_name):
         return
     
     elif flag == "-m":
-        with open(file_name, "r"  ) as file:
-            content = file.read()
-            char_count = len(content)
+        with open(file_name, "rb"  ) as file:
+            char_count = len(file.readlines())
             print(f"{char_count} {file_name}")
         return
             
@@ -107,4 +106,5 @@ file_name = values[2]
 if validity_checkr(command_name, flag, file_name) == True:
     wc_tool(flag,file_name)
     
+
 
