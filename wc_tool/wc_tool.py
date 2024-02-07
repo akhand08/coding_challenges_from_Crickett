@@ -32,7 +32,11 @@ def flag_checkr(flag):
     
             
 
-def validity_checkr(command_name, flag, file_name):
+def validity_checkr(command_name, file_name, **kwargs):
+    
+    flag_name = kwargs["flag_name"]
+    
+    
     try:
         command_name_checkr(command_name)
     except CommandNameError as cne:
@@ -67,6 +71,7 @@ def wc_tool(flag, file_name):
         with open(file_name, "r") as file:
             lines = file.readlines()
             print(f"{len(lines)} {file_name}")
+        return
     
     elif flag == "-c":
         with open(file_name, "rb") as file:
@@ -103,7 +108,7 @@ command_name = values[0]
 flag = values[1]
 file_name = values[2]
 
-if validity_checkr(command_name, flag, file_name) == True:
+if validity_checkr(command_name, file_name, flag_name = flag) == True:
     wc_tool(flag,file_name)
     
 
