@@ -1,29 +1,26 @@
 
 
 import utils
-
-def read_file(filename):
-    with open(filename, "r") as file:
-        content = file.read()
-        return content
+import json
     
     
-def make_pair(inside_object, object):
+def make_pair(inside_json, object):
     
     index = 0
-    size = len(inside_object)
+    size = len(inside_json)
     
     
     while index < size:
         key = ""
-        while inside_object[index] != ":":
-            key += inside_object[index]
+        while inside_json[index] != ":":
+            key += inside_json[index]
             index += 1
         
         key = utils.is_real_key(key)
-        if key == False and inside_object[index+1] != " ":
+        if key == False and inside_json[index+1] != " ":
             return False
         else:
+            pass
             
         
         
@@ -31,12 +28,10 @@ def make_pair(inside_object, object):
     
         
 def JSON_parse(filename):
-    content = read_file(filename)
+    content = utils.read_file(filename)
     object = {}
-    print(content[1])
-    
     if content != "" and content[0] == "{" and content[-1] == "}":
-        pass
+        return True
     else:
         return False
 
@@ -45,6 +40,7 @@ def JSON_parse(filename):
 
 
 if __name__ == "__main__":
-    invalid_json_file = "./tests/step2/invalid.json"
-    valid_json_file = "./tests/step2/valid.json"
-    print(JSON_parse(invalid_json_file))
+    invalid_json_file = "./tests/step1/invalid.json"
+    valid_json_file = "./tests/step1/valid.json"
+    print(JSON_parse(valid_json_file))
+    
